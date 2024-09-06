@@ -38,7 +38,7 @@ public class OrderLogsConfig {
 
     // Create a binding between "customer_orders_queue" and the exchange with the routing key pattern "order.logs.customer.#"
     @Bean
-    public Binding binding1(TopicExchange topicExchange, Queue customerOrdersQueue) {
+    public Binding customerOrdersBinding(TopicExchange topicExchange, Queue customerOrdersQueue) {
         return BindingBuilder.bind(customerOrdersQueue)
                 .to(topicExchange)
                 .with("order.logs.customer.#");
@@ -46,7 +46,7 @@ public class OrderLogsConfig {
 
     // Create a binding between "all_order_logs_queue" and the exchange with the routing key pattern "order.logs.#"
     @Bean
-    public Binding binding2(TopicExchange topicExchange, Queue allOrderLogsQueue) {
+    public Binding allOrdersBinding(TopicExchange topicExchange, Queue allOrderLogsQueue) {
         return BindingBuilder.bind(allOrderLogsQueue)
                 .to(topicExchange)
                 .with("order.logs.#");
@@ -54,7 +54,7 @@ public class OrderLogsConfig {
 
     // Create a binding between "electronics_order_logs_queue" and the exchange with the routing key pattern "order.logs.*.electronics"
     @Bean
-    public Binding binding3(TopicExchange topicExchange, Queue electronicsOrderLogsQueue) {
+    public Binding electronicsOrdersBinding(TopicExchange topicExchange, Queue electronicsOrderLogsQueue) {
         return BindingBuilder.bind(electronicsOrderLogsQueue)
                 .to(topicExchange)
                 .with("order.logs.*.electronics");
